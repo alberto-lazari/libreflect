@@ -8,9 +8,9 @@ OBJ_DIR := $(BUILD_DIR)/obj
 TEST_EXE := $(BIN_DIR)/test
 
 # Source & Headers
-SRC := $(wildcard *.cpp)
-INCLUDE_PATHS := .
-OBJ := $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRC))
+SRC := $(wildcard src/*.cpp)
+INCLUDE_PATHS := src
+OBJ := $(patsubst src/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Test File
 TEST_SRC := tests/test.cpp
@@ -25,7 +25,7 @@ DEPS := $(OBJ:.o=.d)
 all: $(OBJ)
 
 # Compile object files
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: src/%.cpp | $(OBJ_DIR)
 	@$(CXX) $(CXXFLAGS) -MMD -MF $(OBJ_DIR)/$*.d -c $< -o $@
 
 # Compile test program
