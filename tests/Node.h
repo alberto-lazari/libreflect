@@ -30,9 +30,9 @@ TypeDescriptor_Node::TypeDescriptor_Node()
         "Node", sizeof(Node),
         std::vector<reflect::Field>
         {
-            { "key", offsetof(Node, key), reflect::TypeResolver<std::string>::get() },
-            { "value", offsetof(Node, value), reflect::TypeResolver<int>::get() },
-            { "children", offsetof(Node, children), reflect::TypeResolver<std::vector<Node>>::get() },
+            { "key", offsetof(Node, key), reflect::TypeResolver<decltype(Node::key)>::get() },
+            { "value", offsetof(Node, value), reflect::TypeResolver<decltype(Node::value)>::get() },
+            { "children", offsetof(Node, children), reflect::TypeResolver<decltype(Node::children)>::get() },
         }
     )
 {
