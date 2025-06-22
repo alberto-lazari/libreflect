@@ -5,7 +5,7 @@
 namespace reflect
 {
 
-TypeDescriptor::TypeDescriptor(std::string name, size_t size)
+TypeDescriptor::TypeDescriptor(std::string_view name, size_t size)
     : name(name)
     , size(size)
 {

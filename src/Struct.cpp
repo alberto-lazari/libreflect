@@ -5,21 +5,13 @@
 namespace reflect
 {
 
-Field::Field(std::string name, size_t offset, const TypeDescriptor* typeDescriptor)
-    : name(name)
-    , offset(offset)
-    , typeDescriptor(typeDescriptor)
-{
-}
-
-
 TypeDescriptor_Struct::TypeDescriptor_Struct(
-    std::string name,
+    const char* name,
     size_t size,
-    std::vector<Field> fields
+    const std::vector<Field>& fields
 )
     : TypeDescriptor(name, size)
-    , fields(fields)
+    , fields(std::move(fields))
 {
 }
 
@@ -38,6 +30,15 @@ std::string TypeDescriptor_Struct::toString(const void* obj, int indentLevel) co
 
     std::string indentation = indent(indentLevel);
     return std::format("\n{}{{\n{}{}}}", indentation, fieldsRepr, indentation);
+}
+
+const Field* TypeDescriptor_Struct::getField(std::string_view fieldName) const
+{
+    for (const Field& field : fields)
+        if (field.getName() == fieldName)
+            return &field;
+
+    return nullptr;
 }
 
 } // namespace reflect
