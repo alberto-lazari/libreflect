@@ -1,9 +1,12 @@
 #pragma once
 
+#include <concepts>
+
 namespace reflect
 {
 
 struct TypeDescriptor;
+template <typename T> TypeDescriptor* getPrimitiveDescriptor();
 
 template <typename T>
 concept HasReflection = requires

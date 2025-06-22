@@ -12,15 +12,16 @@ namespace reflect
 template <typename T>
 struct TypeDescriptor_StdVector : public TypeDescriptor
 {
-    TypeDescriptor_StdVector();
+    TypeDescriptor_StdVector(std::string name);
 
     virtual std::string toString(const void* obj, int indentLevel = 0) const override;
 };
 
+
 template <typename T>
-TypeDescriptor_StdVector<T>::TypeDescriptor_StdVector()
+TypeDescriptor_StdVector<T>::TypeDescriptor_StdVector(std::string name)
     : TypeDescriptor(
-        std::format("std::vector<{}>", TypeResolver<T>::get()->getFullName()),
+        std::format("std::vector<{}>", name),
         sizeof(std::vector<T>)
     )
 {
