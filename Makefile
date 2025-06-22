@@ -3,14 +3,14 @@ CXX := g++
 
 # Directories
 BUILD_DIR := build
-SRC_DIR := src
+SRC_DIR := src/reflect
 BIN_DIR := $(BUILD_DIR)/bin
 OBJ_DIR := $(BUILD_DIR)/obj
 TEST_EXE := $(BIN_DIR)/test
 
 # Source & Headers
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
-INCLUDE_PATHS := $(SRC_DIR)
+INCLUDE_PATHS := include
 OBJ := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC))
 
 # Test File
