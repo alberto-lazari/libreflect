@@ -87,7 +87,7 @@ void TweetTests()
 
 int main()
 {
-    // NodeTests();
+    NodeTests();
     TweetTests();
 
     return 0;
