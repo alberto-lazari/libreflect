@@ -17,18 +17,24 @@ struct Field
     const char* getName() const { return name; }
     std::string_view getType() const { return typeDescriptor->getFullName(); }
 
-    template <typename T>
-    T* get(void* obj) const
-    {
-        if (getType() != TypeResolver<T>::get()->getFullName()) return nullptr;
-        return reinterpret_cast<T*>((char*)obj + offset);
-    }
+
+    const void* get(const void* obj) const { return reinterpret_cast<const std::byte*>(obj) + offset; }
+    void* get(void* obj) const { return reinterpret_cast<std::byte*>(obj) + offset; }
 
     template <typename T>
     const T* get(const void* obj) const
     {
-        if (getType() != TypeResolver<T>::get()->getFullName()) return nullptr;
-        return reinterpret_cast<const T*>((const char*)obj + offset);
+        return getType() == TypeResolver<T>::get()->getFullName()
+            ? reinterpret_cast<const T*>(get(obj))
+            : nullptr;
+    }
+
+    template <typename T>
+    T* get(void* obj) const
+    {
+        return getType() == TypeResolver<T>::get()->getFullName()
+            ? reinterpret_cast<T*>(get(obj))
+            : nullptr;
     }
 };
 

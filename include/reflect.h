@@ -8,3 +8,6 @@
 #include "reflect/StdVector.h"
 
 #include "reflect/Struct.h"
+
+// Utility functions
+#include "reflect/util.h"

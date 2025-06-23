@@ -12,7 +12,7 @@ std::string TypeDescriptor_StdString::toString(const void* obj, int indentLevel)
 {
     // Mark as intentionally unused
     (void)indentLevel;
-    return '"' + *(const std::string*)obj + '"';
+    return '"' + *reinterpret_cast<const std::string*>(obj) + '"';
 }
 
 template <>

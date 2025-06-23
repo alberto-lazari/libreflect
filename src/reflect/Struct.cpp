@@ -25,7 +25,10 @@ std::string TypeDescriptor_Struct::toString(const void* obj, int indentLevel) co
             fieldIndentation,
             field.name,
             field.typeDescriptor->getFullName(),
-            field.typeDescriptor->toString((char*)obj + field.offset, indentLevel + 1)
+            field.typeDescriptor->toString(
+                reinterpret_cast<const std::byte*>(obj) + field.offset,
+                indentLevel + 1
+            )
         );
 
     std::string indentation = indent(indentLevel);
