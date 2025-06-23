@@ -2,8 +2,6 @@
 
 #include "reflect.h"
 
-#include <format>
-
 struct TypeDescriptor_Node : reflect::TypeDescriptor_Struct
 {
     TypeDescriptor_Node();

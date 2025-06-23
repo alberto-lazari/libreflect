@@ -1,9 +1,10 @@
 #include "Node.h"
+#include "Tweet.h"
 
 #include <iostream>
 #include <vector>
 
-int main()
+void NodeTests()
 {
     Node date =
     {
@@ -39,6 +40,55 @@ int main()
     std::cout << "\nYear incremented:\n"
         // Shorthand for TypeResolver::get()
         << reflect::Type<Node>()->dump(&date);
+}
+
+void TweetTests()
+{
+    Tweet myTweet =
+    {
+        .text = "This is a good day to write a reflection system",
+        .author = "@laz",
+        .timestamp = std::time(nullptr),
+        .likes = 13,
+        .replies = std::vector<Tweet>
+        {
+            Tweet
+            {
+                .text = "This is so inspiring, looking forward to hear updates! "
+                    "I would be glad to hear which AI agents you are leveraging for this project.",
+                .author = "John Dean | AI Expert @ MacroSoftware Corp.",
+                .timestamp = std::time(nullptr),
+                .likes = 2,
+                .replies = std::vector<Tweet>
+                {
+                    Tweet
+                    {
+                        .text = "This is not Linkedin John, go away",
+                        .author = "@dan",
+                        .timestamp = std::time(nullptr),
+                        .likes = 9,
+                        .replies = std::vector<Tweet> {},
+                    },
+                },
+            },
+            Tweet
+            {
+                .text = "Based",
+                .author = "@rob",
+                .timestamp = std::time(nullptr),
+                .likes = 34,
+                .replies = std::vector<Tweet> {},
+            },
+        },
+    };
+
+    std::cout << reflect::Type<Tweet>()->dump(&myTweet);
+}
+
+int main()
+{
+    // NodeTests();
+    TweetTests();
 
     return 0;
 }

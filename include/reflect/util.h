@@ -1,7 +1,6 @@
 #pragma once
 
 #include "TypeResolver.h"
-#include "Struct.h"
 
 namespace reflect
 {
@@ -9,6 +8,8 @@ namespace reflect
 template <typename T>
 TypeDescriptor* Type() { return TypeResolver<T>::get(); }
 
+
+struct TypeDescriptor_Struct;
 
 template <typename T>
 concept StructType = requires
