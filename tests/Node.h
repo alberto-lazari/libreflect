@@ -6,14 +6,15 @@ struct Node
 {
     struct TypeDescriptor_Node : reflect::TypeDescriptor_Struct
     {
+        using T = Node;
         TypeDescriptor_Node()
             : TypeDescriptor_Struct(
                 "Node", sizeof(Node),
                 std::vector<reflect::Field>
                 {
-                    { "key", offsetof(Node, key), reflect::TypeResolver<decltype(Node::key)>::get() },
-                    { "value", offsetof(Node, value), reflect::TypeResolver<decltype(Node::value)>::get() },
-                    { "children", offsetof(Node, children), reflect::TypeResolver<decltype(Node::children)>::get() },
+                    { "key", offsetof(T, key), reflect::TypeResolver<decltype(T::key)>::get() },
+                    { "value", offsetof(T, value), reflect::TypeResolver<decltype(T::value)>::get() },
+                    { "children", offsetof(T, children), reflect::TypeResolver<decltype(T::children)>::get() },
                 }
             )
         {
