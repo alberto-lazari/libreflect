@@ -2,16 +2,15 @@
 
 #include "reflect/StdVector.h"
 
-#include <format>
 #include <vector>
 
 namespace reflect
 {
 
 template <typename T>
-TypeDescriptor_StdVector<T>::TypeDescriptor_StdVector(const char* name)
+TypeDescriptor_StdVector<T>::TypeDescriptor_StdVector()
     : TypeDescriptor(
-        std::format("std::vector<{}>", name),
+        "std::vector<?>",
         sizeof(std::vector<T>)
     )
 {
@@ -31,5 +30,17 @@ std::string TypeDescriptor_StdVector<T>::toString(const void* obj, int indentLev
     std::string indentation = indent(indentLevel);
     return std::format("\n{}[\n{}{}]", indentation, elements, indentation);
 }
+
+// Cannot partially-specialize getPrimitiveDescriptor(), because it's a function.
+// Standard C++ only allows struct/class partial template specialization.
+template <typename T, typename Policy>
+struct TypeResolver<std::vector<T>, Policy>
+{
+    static TypeDescriptor* get()
+    {
+        static TypeDescriptor_StdVector<T> typeDescriptor;
+        return &typeDescriptor;
+    }
+};
 
 } // namespace reflect

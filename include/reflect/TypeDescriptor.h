@@ -8,13 +8,13 @@ namespace reflect
 
 struct TypeDescriptor
 {
-    std::string name;
+    const char* name;
     size_t size;
 
-    TypeDescriptor(std::string_view name, size_t size);
+    TypeDescriptor(const char* name, size_t size);
     virtual ~TypeDescriptor() = default;
 
-    virtual std::string_view getFullName() const { return name; }
+    virtual std::string getFullName() const { return name; }
     virtual std::string dump(const void* obj, int indentLevel = 0) const;
     virtual std::string toString(const void* obj, int indentLevel = 0) const = 0;
 

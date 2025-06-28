@@ -15,7 +15,7 @@ struct Field
     Field(const char* name, size_t offset, const TypeDescriptor* typeDescriptor);
 
     const char* getName() const { return name; }
-    std::string_view getType() const { return typeDescriptor->getFullName(); }
+    std::string getType() const { return typeDescriptor->getFullName(); }
 
 
     const void* get(const void* obj) const { return reinterpret_cast<const std::byte*>(obj) + offset; }

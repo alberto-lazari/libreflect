@@ -14,10 +14,3 @@ struct Tweet
     int likes;
     std::vector<Tweet> replies;
 };
-
-template <>
-reflect::TypeDescriptor* reflect::getPrimitiveDescriptor<std::vector<Tweet>>()
-{
-    static TypeDescriptor_StdVector<Tweet> typeDescriptor("Tweet");
-    return &typeDescriptor;
-}

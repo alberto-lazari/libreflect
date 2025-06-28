@@ -16,19 +16,19 @@ struct AliasTag
 };
 
 template <typename T>
-concept HasReflection = requires
+concept HasTypeDescriptor = requires
 {
-    { &T::Reflection } -> std::convertible_to<TypeDescriptor*>;
+    { &T::Type } -> std::convertible_to<TypeDescriptor*>;
 };
 
 
 struct DefaultResolverPolicy
 {
-    template <HasReflection T>
-    static TypeDescriptor* get() { return &T::Reflection; }
+    template <HasTypeDescriptor T>
+    static TypeDescriptor* get() { return &T::Type; }
 
     template <typename T>
-    requires (!HasReflection<T>)
+    requires (!HasTypeDescriptor<T>)
     static TypeDescriptor* get()
     {
         if constexpr (!std::is_void_v<typename AliasTag<T>::type>)

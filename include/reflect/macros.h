@@ -19,7 +19,7 @@
         { \
         } \
     }; \
-    static inline TypeDescriptor_##Struct Reflection
+    static inline TypeDescriptor_##Struct Type
 
 #define REFLECT_STRUCT_1(Struct) \
     REFLECT_STRUCT_BASE(Struct, REFLECT_FIELDS(Struct))

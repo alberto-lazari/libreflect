@@ -14,7 +14,7 @@ struct TypeDescriptor_Struct;
 template <typename T>
 concept StructType = requires
 {
-    { &T::Reflection } -> std::convertible_to<TypeDescriptor_Struct*>;
+    { &T::Type } -> std::convertible_to<TypeDescriptor_Struct*>;
 };
 
 template <StructType T>
