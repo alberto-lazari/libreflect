@@ -1,9 +1,9 @@
 #pragma once
 
-#define REFLECT_FIELD(name) \
+#define FIELD(name) \
     { #name, offsetof(T, name), reflect::TypeResolver<decltype(T::name)>::get() },
 
-#define REFLECT_STRUCT(Struct, fields) \
+#define REFLECT(Struct, fields) \
     struct TypeDescriptor_##Struct : reflect::TypeDescriptor_Struct \
     { \
         using T = Struct; \

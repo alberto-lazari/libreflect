@@ -6,12 +6,12 @@
 
 struct Tweet
 {
-    REFLECT_STRUCT(Tweet,
-        REFLECT_FIELD(text)
-        REFLECT_FIELD(author)
-        REFLECT_FIELD(timestamp)
-        REFLECT_FIELD(likes)
-        REFLECT_FIELD(replies)
+    REFLECT(Tweet,
+        FIELD(text)
+        FIELD(author)
+        FIELD(timestamp)
+        FIELD(likes)
+        FIELD(replies)
     );
 
     std::string text;
