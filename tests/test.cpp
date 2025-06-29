@@ -1,5 +1,6 @@
 #include "Node.h"
 #include "Tweet.h"
+#include "Session.h"
 
 #include <iostream>
 #include <vector>
@@ -81,10 +82,17 @@ void TweetTests()
     std::cout << reflect::Type<Tweet>()->dump(&myTweet);
 }
 
+void SessionTests()
+{
+    Session origin { .uid = 0L, .username = "root", .loginTime = 0L };
+    std::cout << reflect::Type<Session>()->dump(&origin);
+}
+
 int main()
 {
     NodeTests();
     TweetTests();
+    SessionTests();
 
     return 0;
 }

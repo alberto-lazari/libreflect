@@ -1,8 +1,7 @@
 #pragma once
 
 #include "reflect.h"
-
-#include <ctime>
+#include "reflect/Time_t.h"
 
 struct Tweet
 {
@@ -16,7 +15,7 @@ struct Tweet
 
     std::string text;
     std::string author;
-    std::time_t timestamp;
+    reflect::time_t timestamp;
     int likes;
     std::vector<Tweet> replies;
 };
