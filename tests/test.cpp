@@ -10,9 +10,8 @@ void NodeTests()
     {
         "Year",
         2025,
-        std::vector<Node>
         {
-            Node { "Month", 6, std::vector<Node> {} },
+            { "Month", 6, {} },
         },
     };
 
@@ -50,34 +49,31 @@ void TweetTests()
         .author = "@laz",
         .timestamp = std::time(nullptr),
         .likes = 13,
-        .replies = std::vector<Tweet>
+        .replies =
         {
-            Tweet
             {
                 .text = "This is so inspiring, looking forward to hear updates! "
                     "I would be glad to hear which AI agents you are leveraging for this project.",
                 .author = "John Dean | AI Expert @ MacroSoftware Corp.",
                 .timestamp = std::time(nullptr),
                 .likes = 2,
-                .replies = std::vector<Tweet>
+                .replies =
                 {
-                    Tweet
                     {
                         .text = "This is not Linkedin John, go away",
                         .author = "@dan",
                         .timestamp = std::time(nullptr),
                         .likes = 9,
-                        .replies = std::vector<Tweet> {},
+                        .replies = {},
                     },
                 },
             },
-            Tweet
             {
                 .text = "Based",
                 .author = "@rob",
                 .timestamp = std::time(nullptr),
                 .likes = 34,
-                .replies = std::vector<Tweet> {},
+                .replies = {},
             },
         },
     };
